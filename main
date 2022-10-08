@@ -1,0 +1,221 @@
+import java.math.BigDecimal
+import java.math.MathContext
+import java.math.RoundingMode
+
+
+fun main() {
+    base()
+}
+
+fun base() {
+    try {
+        println("Enter two numbers in format: {source base} {target base} (To quit type /exit)")
+        val (sourceBase, targetBase) = readln().split(" ")
+        userNumber(sourceBase, targetBase)
+    } catch (e: IndexOutOfBoundsException) {
+        return
+    }
+}
+
+fun userNumber(sourceBase: String, targetBase: String) {
+    println("Enter number in base $sourceBase to convert to base $targetBase (To go back type /back)")
+    when (val number = readln()) {
+        "/back" -> base()
+        else -> toDecimal(sourceBase, targetBase, number)
+    }
+}
+
+
+fun toDecimal(sourceBase: String, targetBase: String, number: String) {
+
+    var numToDecimal: BigDecimal = BigDecimal.ZERO
+    var numToDecimal1: BigDecimal = BigDecimal.ZERO
+
+
+    val integerPartNumber = number.substringBefore('.')
+    val fractionalPartNumber = if ('.' in number) {
+        number.substringAfter('.')
+    } else {
+        ""
+    }
+
+    var currentDegree = integerPartNumber.lastIndex
+
+    for (i in integerPartNumber.toString()) {
+        when (i.uppercase()) {
+            "A" -> numToDecimal += BigDecimal.valueOf(10) * sourceBase.toBigDecimal().pow(currentDegree)
+            "B" -> numToDecimal += BigDecimal.valueOf(11) * sourceBase.toBigDecimal().pow(currentDegree)
+            "C" -> numToDecimal += BigDecimal.valueOf(12) * sourceBase.toBigDecimal().pow(currentDegree)
+            "D" -> numToDecimal += BigDecimal.valueOf(13) * sourceBase.toBigDecimal().pow(currentDegree)
+            "E" -> numToDecimal += BigDecimal.valueOf(14) * sourceBase.toBigDecimal().pow(currentDegree)
+            "F" -> numToDecimal += BigDecimal.valueOf(15) * sourceBase.toBigDecimal().pow(currentDegree)
+            "G" -> numToDecimal += BigDecimal.valueOf(16) * sourceBase.toBigDecimal().pow(currentDegree)
+            "H" -> numToDecimal += BigDecimal.valueOf(17) * sourceBase.toBigDecimal().pow(currentDegree)
+            "I" -> numToDecimal += BigDecimal.valueOf(18) * sourceBase.toBigDecimal().pow(currentDegree)
+            "J" -> numToDecimal += BigDecimal.valueOf(19) * sourceBase.toBigDecimal().pow(currentDegree)
+            "K" -> numToDecimal += BigDecimal.valueOf(20) * sourceBase.toBigDecimal().pow(currentDegree)
+            "L" -> numToDecimal += BigDecimal.valueOf(21) * sourceBase.toBigDecimal().pow(currentDegree)
+            "M" -> numToDecimal += BigDecimal.valueOf(22) * sourceBase.toBigDecimal().pow(currentDegree)
+            "O" -> numToDecimal += BigDecimal.valueOf(24) * sourceBase.toBigDecimal().pow(currentDegree)
+            "N" -> numToDecimal += BigDecimal.valueOf(23) * sourceBase.toBigDecimal().pow(currentDegree)
+            "P" -> numToDecimal += BigDecimal.valueOf(25) * sourceBase.toBigDecimal().pow(currentDegree)
+            "Q" -> numToDecimal += BigDecimal.valueOf(26) * sourceBase.toBigDecimal().pow(currentDegree)
+            "R" -> numToDecimal += BigDecimal.valueOf(27) * sourceBase.toBigDecimal().pow(currentDegree)
+            "S" -> numToDecimal += BigDecimal.valueOf(28) * sourceBase.toBigDecimal().pow(currentDegree)
+            "T" -> numToDecimal += BigDecimal.valueOf(29) * sourceBase.toBigDecimal().pow(currentDegree)
+            "U" -> numToDecimal += BigDecimal.valueOf(30) * sourceBase.toBigDecimal().pow(currentDegree)
+            "V" -> numToDecimal += BigDecimal.valueOf(31) * sourceBase.toBigDecimal().pow(currentDegree)
+            "W" -> numToDecimal += BigDecimal.valueOf(32) * sourceBase.toBigDecimal().pow(currentDegree)
+            "X" -> numToDecimal += BigDecimal.valueOf(33) * sourceBase.toBigDecimal().pow(currentDegree)
+            "Y" -> numToDecimal += BigDecimal.valueOf(34) * sourceBase.toBigDecimal().pow(currentDegree)
+            "Z" -> numToDecimal += BigDecimal.valueOf(35) * sourceBase.toBigDecimal().pow(currentDegree)
+            else -> numToDecimal += i.toString().toBigDecimal() * sourceBase.toBigDecimal().pow(currentDegree)
+        }
+        currentDegree--
+    }
+
+
+    fun fractionPart() {
+        var currentDegreeFourFractional = -1
+        for (i in fractionalPartNumber.toString()) {
+            when (i.uppercase()) {
+                "A" -> numToDecimal1 += BigDecimal.valueOf(10) * sourceBase.toBigDecimal().pow(currentDegreeFourFractional, MathContext.DECIMAL64)
+                "B" -> numToDecimal1 += BigDecimal.valueOf(11) * sourceBase.toBigDecimal().pow(currentDegreeFourFractional, MathContext.DECIMAL64)
+                "C" -> numToDecimal1 += BigDecimal.valueOf(12) * sourceBase.toBigDecimal().pow(currentDegreeFourFractional, MathContext.DECIMAL64)
+                "D" -> numToDecimal1 += BigDecimal.valueOf(13) * sourceBase.toBigDecimal().pow(currentDegreeFourFractional, MathContext.DECIMAL64)
+                "E" -> numToDecimal1 += BigDecimal.valueOf(14) * sourceBase.toBigDecimal().pow(currentDegreeFourFractional, MathContext.DECIMAL64)
+                "F" -> numToDecimal1 += BigDecimal.valueOf(15) * sourceBase.toBigDecimal().pow(currentDegreeFourFractional, MathContext.DECIMAL64)
+                "G" -> numToDecimal1 += BigDecimal.valueOf(16) * sourceBase.toBigDecimal().pow(currentDegreeFourFractional, MathContext.DECIMAL64)
+                "H" -> numToDecimal1 += BigDecimal.valueOf(17) * sourceBase.toBigDecimal().pow(currentDegreeFourFractional, MathContext.DECIMAL64)
+                "I" -> numToDecimal1 += BigDecimal.valueOf(18) * sourceBase.toBigDecimal().pow(currentDegreeFourFractional, MathContext.DECIMAL64)
+                "J" -> numToDecimal1 += BigDecimal.valueOf(19) * sourceBase.toBigDecimal().pow(currentDegreeFourFractional, MathContext.DECIMAL64)
+                "K" -> numToDecimal1 += BigDecimal.valueOf(20) * sourceBase.toBigDecimal().pow(currentDegreeFourFractional, MathContext.DECIMAL64)
+                "L" -> numToDecimal1 += BigDecimal.valueOf(21) * sourceBase.toBigDecimal().pow(currentDegreeFourFractional, MathContext.DECIMAL64)
+                "M" -> numToDecimal1 += BigDecimal.valueOf(22) * sourceBase.toBigDecimal().pow(currentDegreeFourFractional, MathContext.DECIMAL64)
+                "O" -> numToDecimal1 += BigDecimal.valueOf(24) * sourceBase.toBigDecimal().pow(currentDegreeFourFractional, MathContext.DECIMAL64)
+                "N" -> numToDecimal1 += BigDecimal.valueOf(23) * sourceBase.toBigDecimal().pow(currentDegreeFourFractional, MathContext.DECIMAL64)
+                "P" -> numToDecimal1 += BigDecimal.valueOf(25) * sourceBase.toBigDecimal().pow(currentDegreeFourFractional, MathContext.DECIMAL64)
+                "Q" -> numToDecimal1 += BigDecimal.valueOf(26) * sourceBase.toBigDecimal().pow(currentDegreeFourFractional, MathContext.DECIMAL64)
+                "R" -> numToDecimal1 += BigDecimal.valueOf(27) * sourceBase.toBigDecimal().pow(currentDegreeFourFractional, MathContext.DECIMAL64)
+                "S" -> numToDecimal1 += BigDecimal.valueOf(28) * sourceBase.toBigDecimal().pow(currentDegreeFourFractional, MathContext.DECIMAL64)
+                "T" -> numToDecimal1 += BigDecimal.valueOf(29) * sourceBase.toBigDecimal().pow(currentDegreeFourFractional, MathContext.DECIMAL64)
+                "U" -> numToDecimal1 += BigDecimal.valueOf(30) * sourceBase.toBigDecimal().pow(currentDegreeFourFractional, MathContext.DECIMAL64)
+                "V" -> numToDecimal1 += BigDecimal.valueOf(31) * sourceBase.toBigDecimal().pow(currentDegreeFourFractional, MathContext.DECIMAL64)
+                "W" -> numToDecimal1 += BigDecimal.valueOf(32) * sourceBase.toBigDecimal().pow(currentDegreeFourFractional, MathContext.DECIMAL64)
+                "X" -> numToDecimal1 += BigDecimal.valueOf(33) * sourceBase.toBigDecimal().pow(currentDegreeFourFractional, MathContext.DECIMAL64)
+                "Y" -> numToDecimal1 += BigDecimal.valueOf(34) * sourceBase.toBigDecimal().pow(currentDegreeFourFractional, MathContext.DECIMAL64)
+                "Z" -> numToDecimal1 += BigDecimal.valueOf(35) * sourceBase.toBigDecimal().pow(currentDegreeFourFractional, MathContext.DECIMAL64)
+
+                else -> numToDecimal1 += i.toString().toBigDecimal() * sourceBase.toBigDecimal().pow(currentDegreeFourFractional, MathContext.DECIMAL64)
+            }
+           currentDegreeFourFractional--
+        }
+    }
+
+    if (fractionalPartNumber.isNotEmpty()) fractionPart()
+
+
+
+
+    toNewNumber(numToDecimal, numToDecimal1, sourceBase, targetBase)
+
+}
+
+fun toNewNumber(numToDecimal: BigDecimal, numToDecimal1: BigDecimal, sourceBase: String, targetBase: String) {
+
+    val integerPartNumber = numToDecimal.toString().substringBefore('.')
+
+    var result = ""
+
+    var remainderOfNumToDecimal = integerPartNumber.toBigDecimal()
+
+    while (remainderOfNumToDecimal >= BigDecimal.ONE) {
+        val (divisionResult, remainder) = remainderOfNumToDecimal.divideAndRemainder(targetBase.toBigDecimal())
+        remainderOfNumToDecimal = divisionResult
+
+        when (remainder) {
+            BigDecimal.valueOf(10) -> result = "A".plus(result)
+            BigDecimal.valueOf(11) -> result = "B".plus(result)
+            BigDecimal.valueOf(12) -> result = "C".plus(result)
+            BigDecimal.valueOf(13) -> result = "D".plus(result)
+            BigDecimal.valueOf(14) -> result = "E".plus(result)
+            BigDecimal.valueOf(15) -> result = "F".plus(result)
+            BigDecimal.valueOf(16) -> result = "G".plus(result)
+            BigDecimal.valueOf(17) -> result = "H".plus(result)
+            BigDecimal.valueOf(18) -> result = "I".plus(result)
+            BigDecimal.valueOf(19) -> result = "J".plus(result)
+            BigDecimal.valueOf(20) -> result = "K".plus(result)
+            BigDecimal.valueOf(21) -> result = "L".plus(result)
+            BigDecimal.valueOf(22) -> result = "M".plus(result)
+            BigDecimal.valueOf(23) -> result = "N".plus(result)
+            BigDecimal.valueOf(24) -> result = "O".plus(result)
+            BigDecimal.valueOf(25) -> result = "P".plus(result)
+            BigDecimal.valueOf(26) -> result = "Q".plus(result)
+            BigDecimal.valueOf(27) -> result = "R".plus(result)
+            BigDecimal.valueOf(28) -> result = "S".plus(result)
+            BigDecimal.valueOf(29) -> result = "T".plus(result)
+            BigDecimal.valueOf(30) -> result = "U".plus(result)
+            BigDecimal.valueOf(31) -> result = "V".plus(result)
+            BigDecimal.valueOf(32) -> result = "W".plus(result)
+            BigDecimal.valueOf(33) -> result = "X".plus(result)
+            BigDecimal.valueOf(34) -> result = "Y".plus(result)
+            BigDecimal.valueOf(35) -> result = "Z".plus(result)
+            else -> result = remainder.toString().plus(result)
+        }
+    }
+
+    var result1 = ""
+    fun fractionPart() {
+        result1 += "."
+
+        var remainderOfNumToDecimal1 = numToDecimal1.setScale(5, RoundingMode.CEILING)
+
+        var x = 0
+        while ( x < 5) {
+            remainderOfNumToDecimal1 *= targetBase.toBigDecimal()
+            if (remainderOfNumToDecimal1 >= BigDecimal.ONE) {
+                val intInF = remainderOfNumToDecimal1.toString().substringBefore('.')
+                remainderOfNumToDecimal1 -= intInF.toBigDecimal()
+                when (intInF.toBigDecimal()) {
+                    BigDecimal.valueOf(10) -> result1 += "A"
+                    BigDecimal.valueOf(11) -> result1 += "B"
+                    BigDecimal.valueOf(12) -> result1 += "C"
+                    BigDecimal.valueOf(13) -> result1 += "D"
+                    BigDecimal.valueOf(14) -> result1 += "E"
+                    BigDecimal.valueOf(15) -> result1 += "F"
+                    BigDecimal.valueOf(16) -> result1 += "G"
+                    BigDecimal.valueOf(17) -> result1 += "H"
+                    BigDecimal.valueOf(18) -> result1 += "I"
+                    BigDecimal.valueOf(19) -> result1 += "J"
+                    BigDecimal.valueOf(20) -> result1 += "K"
+                    BigDecimal.valueOf(21) -> result1 += "L"
+                    BigDecimal.valueOf(22) -> result1 += "M"
+                    BigDecimal.valueOf(23) -> result1 += "N"
+                    BigDecimal.valueOf(24) -> result1 += "O"
+                    BigDecimal.valueOf(25) -> result1 += "P"
+                    BigDecimal.valueOf(26) -> result1 += "Q"
+                    BigDecimal.valueOf(27) -> result1 += "R"
+                    BigDecimal.valueOf(28) -> result1 += "S"
+                    BigDecimal.valueOf(29) -> result1 += "T"
+                    BigDecimal.valueOf(30) -> result1 += "U"
+                    BigDecimal.valueOf(31) -> result1 += "V"
+                    BigDecimal.valueOf(32) -> result1 += "W"
+                    BigDecimal.valueOf(33) -> result1 += "X"
+                    BigDecimal.valueOf(34) -> result1 += "Y"
+                    BigDecimal.valueOf(35) -> result1 += "Z"
+                    else -> result1 += intInF
+                }
+            } else {
+                result1 += "0"
+            }
+        x++
+        }
+
+    }
+
+    if (numToDecimal1 != BigDecimal.ZERO) fractionPart()
+
+
+    println("Conversion result: ${(result + result1)}")
+    userNumber(sourceBase, targetBase)
+}

@@ -25,7 +25,6 @@ fun userNumber(sourceBase: String, targetBase: String) {
     }
 }
 
-
 fun toDecimal(sourceBase: String, targetBase: String, number: String) {
 
     var numToDecimal: BigDecimal = BigDecimal.ZERO
@@ -41,7 +40,7 @@ fun toDecimal(sourceBase: String, targetBase: String, number: String) {
 
     var currentDegree = integerPartNumber.lastIndex
 
-    for (i in integerPartNumber.toString()) {
+    for (i in integerPartNumber) {
         when (i.uppercase()) {
             "A" -> numToDecimal += BigDecimal.valueOf(10) * sourceBase.toBigDecimal().pow(currentDegree)
             "B" -> numToDecimal += BigDecimal.valueOf(11) * sourceBase.toBigDecimal().pow(currentDegree)
@@ -77,7 +76,7 @@ fun toDecimal(sourceBase: String, targetBase: String, number: String) {
 
     fun fractionPart() {
         var currentDegreeFourFractional = -1
-        for (i in fractionalPartNumber.toString()) {
+        for (i in fractionalPartNumber) {
             when (i.uppercase()) {
                 "A" -> numToDecimal1 += BigDecimal.valueOf(10) * sourceBase.toBigDecimal().pow(currentDegreeFourFractional, MathContext.DECIMAL64)
                 "B" -> numToDecimal1 += BigDecimal.valueOf(11) * sourceBase.toBigDecimal().pow(currentDegreeFourFractional, MathContext.DECIMAL64)
@@ -108,14 +107,11 @@ fun toDecimal(sourceBase: String, targetBase: String, number: String) {
 
                 else -> numToDecimal1 += i.toString().toBigDecimal() * sourceBase.toBigDecimal().pow(currentDegreeFourFractional, MathContext.DECIMAL64)
             }
-           currentDegreeFourFractional--
+            currentDegreeFourFractional--
         }
     }
 
     if (fractionalPartNumber.isNotEmpty()) fractionPart()
-
-
-
 
     toNewNumber(numToDecimal, numToDecimal1, sourceBase, targetBase)
 
@@ -123,11 +119,9 @@ fun toDecimal(sourceBase: String, targetBase: String, number: String) {
 
 fun toNewNumber(numToDecimal: BigDecimal, numToDecimal1: BigDecimal, sourceBase: String, targetBase: String) {
 
-    val integerPartNumber = numToDecimal.toString().substringBefore('.')
-
     var result = ""
 
-    var remainderOfNumToDecimal = integerPartNumber.toBigDecimal()
+    var remainderOfNumToDecimal = numToDecimal
 
     while (remainderOfNumToDecimal >= BigDecimal.ONE) {
         val (divisionResult, remainder) = remainderOfNumToDecimal.divideAndRemainder(targetBase.toBigDecimal())
@@ -208,14 +202,14 @@ fun toNewNumber(numToDecimal: BigDecimal, numToDecimal1: BigDecimal, sourceBase:
             } else {
                 result1 += "0"
             }
-        x++
+            x++
         }
 
     }
 
     if (numToDecimal1 != BigDecimal.ZERO) fractionPart()
 
-
     println("Conversion result: ${(result + result1)}")
+
     userNumber(sourceBase, targetBase)
 }
